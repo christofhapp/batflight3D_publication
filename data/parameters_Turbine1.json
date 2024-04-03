@@ -1,0 +1,65 @@
+{
+    "camintrinsicMatrix1": [
+        [
+            1176,
+            0,
+            320
+        ],
+        [
+            0,
+            1176,
+            240
+        ],
+        [
+            0,
+            0,
+            1
+        ]
+    ],
+    "camintrinsicMatrix2": [
+        [
+            1176,
+            0,
+            320
+        ],
+        [
+            0,
+            1176,
+            240
+        ],
+        [
+            0,
+            0,
+            1
+        ]
+    ],
+    "distortion1": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "distortion2": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "ref": [
+		48.665244, 9.836314
+    ],
+    "bg_stacksize": 10,
+    "bg_high": 7,
+    "scoreDevider": 10,
+    "Threshold_scoreImage": 13.0,
+    "Threshold_objWarmerThanRing": 9.0,
+    "area_max": 65,
+    "areaRatio": 4,
+    "maxDistFromEpiline": 6.0,
+    "savePointsFileClick": "points_clicked.csv",
+    "savePointsFile": "STEREO_IM_PTS_0.csv",
+    "eps_m": 8,
+    "eps_sek": 2,
+    "min_samples": 10,
+    "speed_plot_z_frames_difference_quotient": 60
+}
