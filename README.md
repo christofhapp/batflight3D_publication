@@ -4,7 +4,9 @@ The code in this repository is used to generate the result plots of the publicat
 # Quick Start
 install python with numpy, matplotlib, opencv-python, utm, pandas, scikit-image and scikit-learn
 
-run **plot_statistics.py** to see the final 3D error plots of all 3D calibrations and all the 3D flights if you click a boxplot
+run **plot_statistics.py** to see the final 3D error plots of all 3D calibrations
+
+**click on a boxplot** to see all the 3D flights
 
 run **animal_flightpath_example.py** to see how you get from the synchronized images to a final 3D flight path reconstruction by using the 3D calibration calculated before
 
