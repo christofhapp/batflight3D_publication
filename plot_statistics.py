@@ -57,15 +57,15 @@ sets = [
         'DRONE_SIM_PTS_path': r'data\Turbine2_Setup6_2022-06-26_20-56\DRONE_SIM_PTS.csv'},
     {
         'calibname': '18+19',
-        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--10-48'},
+        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--10-48\DRONE_SIM_PTS.csv'},
 
     {
         'calibname': '17+19',
-        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--11-01'},
+        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--11-01\DRONE_SIM_PTS.csv'},
 
     {
         'calibname': '17+18',
-        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--11-14'},
+        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--11-14\DRONE_SIM_PTS.csv'},
 
 
 
@@ -87,7 +87,7 @@ batflight3d.load_config_json(r'data\parameters_Turbine1.json')
 # do calibs of all flights
 for i,set in enumerate(sets):
     print('load DRONE_SIM_PTS.csv Flight ID ', i, '...')
-    if i<8:
+    if i<8 or i>15:
         batflight3d.load_config_json(r'data\parameters_Turbine1.json')
     else:
         batflight3d.load_config_json(r'data\parameters_Turbine2.json')
@@ -346,7 +346,7 @@ ax7.legend()
 # on_click:
 def on_click(event):
     val = round(event.xdata-1)
-    if val>=1 and val<=16:
+    if val>=1 and val<=19:
         plotFlight(val)
 
 fig = plt.figure('3D Errors per Flight ID')
@@ -397,10 +397,10 @@ def plotFlight(setnr):
     t_obj = sets[setnr - 1]['DSP']['time'].to_numpy()
     xyz_obj = sets[setnr - 1]['DSP'][['objX', 'objY', 'height']].to_numpy()
 
-    RC.plotGPSPoints(xyz_obj_conc,t_obj_conc,sets[setnr-1]['DSPconc'][['lat','lon']].to_numpy(),color='gray',size='1',label='Drone Points '+ sets[setnr-1]['calibname'] +': 3D Calibration')
+    RC.plotGPSPoints(xyz_obj_conc,t_obj_conc,sets[setnr-1]['DSPconc'][['lat','lon']].to_numpy(),color='lightsteelblue',size='1',label='Drone Points '+ sets[setnr-1]['calibname'] +': 3D Calibration')
     t = sets[setnr-1]['DSP']['time'].to_numpy()
     nr = sets[setnr-1]['DSP']['nr'].to_numpy()
-    RC.plotPoints(sets[setnr-1]['calib'], xyz ,t,nr,color='cornflowerblue',size='3',label='Image Points '+str(setnr)+': Reconstruction based on 3D Calibration')
+    RC.plotPoints(sets[setnr-1]['calib'], xyz ,t,nr,color='royalblue',size='3',label='Image Points '+str(setnr)+': Reconstruction based on 3D Calibration')
     RC.plotGPSPoints(xyz_obj,t_obj,sets[setnr-1]['DSP'][['lat','lon']].to_numpy(),color='black',size='1',label='Drone Points '+str(setnr)+': Evaluation')
 
     # calculate speed of drone GPS and image reconstruction of drone
@@ -411,7 +411,7 @@ def plotFlight(setnr):
     ax.set_xlabel('t / s')
     ax.set_ylabel('v / km/h')
     ax.plot(t_drone,speed_drone,linewidth=2,label='Drone GPS',color='black')
-    ax.plot(t_recon, speed_recon, linewidth=2,label='3D Reconstruction',color='cornflowerblue')
+    ax.plot(t_recon, speed_recon, linewidth=2,label='3D Reconstruction',color='royalblue')
     ax.set_title('Speed of Flight ID '+str(setnr))
     ax.grid()
     ax.legend()
