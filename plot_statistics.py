@@ -54,7 +54,21 @@ sets = [
         'DRONE_SIM_PTS_path': r'data\Turbine2_Setup6_2022-06-26_20-46\DRONE_SIM_PTS.csv'},
     {
         'calibname': '15', # 16
-        'DRONE_SIM_PTS_path': r'data\Turbine2_Setup6_2022-06-26_20-56\DRONE_SIM_PTS.csv'}
+        'DRONE_SIM_PTS_path': r'data\Turbine2_Setup6_2022-06-26_20-56\DRONE_SIM_PTS.csv'},
+    {
+        'calibname': '18+19',
+        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--10-48'},
+
+    {
+        'calibname': '17+19',
+        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--11-01'},
+
+    {
+        'calibname': '17+18',
+        'DRONE_SIM_PTS_path': r'data\Turbine1_Setup7_2024-04-05--11-14'},
+
+
+
         ]
 
 error = []
@@ -189,6 +203,11 @@ def process_DRONE_SIM_PTS(subsets):
         DSPconc.append(pd.concat([DSPs[0], DSPs[1], DSPs[3]])) # for Testset 2
         DSPconc.append(pd.concat([DSPs[0], DSPs[1], DSPs[2]])) # for Testset 3
 
+    elif len(DSPs)==3:
+        DSPconc.append(pd.concat([DSPs[1], DSPs[2]])) # for Testset 0
+        DSPconc.append(pd.concat([DSPs[0], DSPs[2]])) # for Testset 1
+        DSPconc.append(pd.concat([DSPs[0], DSPs[1]])) # for Testset 2
+
     elif len(DSPs)==2:
         DSPconc.append(DSPs[1]) # for Testset 0
         DSPconc.append(DSPs[0]) # for Testset 1
@@ -224,6 +243,7 @@ def process_DSP():
     process_DRONE_SIM_PTS(sets[10:12])
     process_DRONE_SIM_PTS(sets[12:14])
     process_DRONE_SIM_PTS(sets[14:16])
+    process_DRONE_SIM_PTS(sets[16:19])
     mean_errors = []
     for err in error:
         mean_errors.append(np.mean(err))
@@ -349,7 +369,7 @@ box = ax2.boxplot(error, whis=20, notch=True, patch_artist=True)
 for patch, color in zip(box['boxes'],colors):
     patch.set_facecolor(color)
 
-names=['All','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']
+names=['All','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19']
 ax2.set_xticklabels(names)
 ax2.set_ylabel('3D error in m', fontsize=fsize)
 ax2.set_xlabel('flight ID', fontsize=fsize)
